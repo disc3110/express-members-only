@@ -1,0 +1,12 @@
+<nav class="w-full flex justify-between items-center py-4 px-6 bg-slate-900 text-white">
+  <a href="/" class="font-semibold text-lg">Members Only</a>
+  <div class="space-x-4">
+    <% if (currentUser) { %>
+      <span class="text-sm">Hi, <%= currentUser.username %></span>
+      <a href="/logout" class="underline text-sm">Logout</a>
+    <% } else { %>
+      <a href="/login" class="underline text-sm">Log in</a>
+      <a href="/signup" class="underline text-sm">Sign up</a>
+    <% } %>
+  </div>
+</nav>

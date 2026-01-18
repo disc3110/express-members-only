@@ -1,0 +1,19 @@
+<% if ((successMessages && successMessages.length) || (errorMessages && errorMessages.length)) { %>
+  <div class="w-full">
+    <% if (successMessages) { %>
+      <% successMessages.forEach(msg => { %>
+        <div class="bg-green-100 text-green-800 text-sm px-4 py-2">
+          <%= msg %>
+        </div>
+      <% }) %>
+    <% } %>
+
+    <% if (errorMessages) { %>
+      <% errorMessages.forEach(msg => { %>
+        <div class="bg-red-100 text-red-800 text-sm px-4 py-2">
+          <%= msg %>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+<% } %>
