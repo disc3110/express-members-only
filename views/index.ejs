@@ -21,6 +21,21 @@
           <% } %>
         </div>
 
+        <% if (!isMember) { %>
+          <p class="mb-4 text-sm text-slate-600">
+            Anyone can read the stories, but only club members can see who wrote them.
+            <% if (isLoggedIn) { %>
+              <a href="/join" class="underline">Join the club</a> to reveal authors.
+            <% } else { %>
+              <a href="/signup" class="underline">Sign up</a> and become a member to reveal authors.
+            <% } %>
+          </p>
+        <% } else { %>
+          <p class="mb-4 text-sm text-slate-600">
+            You’re a member – you can see who wrote each post and comment on them.
+          </p>
+        <% } %>
+
         <% if (!messages || messages.length === 0) { %>
           <p class="text-slate-600">No messages yet.</p>
         <% } else { %>
