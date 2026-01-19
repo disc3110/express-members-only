@@ -42,3 +42,23 @@ exports.postNewMessage = async (req, res) => {
     });
   }
 };
+
+exports.deleteMessage = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Message.deleteMessage(id);
+    req.flash("success", "Message deleted.");
+  } catch (err) {
+    console.error("Error deleting message:", err);
+
+    // FK violation if there are comments referencing this message
+    if (err.code === "23503") {
+      req.flash("error", "Cannot delete this message because it has comments.");
+    } else {
+      req.flash("error", "Could not delete message.");
+    }
+  }
+
+  return res.redirect("/");
+};

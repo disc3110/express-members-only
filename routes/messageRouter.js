@@ -1,7 +1,7 @@
 const express = require("express");
 const { body } = require("express-validator");
 const messageController = require("../controllers/messageController");
-const { requireAuth } = require("../middleware/authGuards");
+const { requireAuth, requireAdmin } = require("../middleware/authGuards");
 
 const router = express.Router();
 
@@ -22,6 +22,13 @@ router.post(
   requireAuth,
   newMessageValidators,
   messageController.postNewMessage
+);
+
+router.delete(
+  "/messages/:id",
+  requireAuth,
+  requireAdmin,
+  messageController.deleteMessage
 );
 
 module.exports = router;
