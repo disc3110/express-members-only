@@ -12,6 +12,7 @@ const authRouter = require("./routes/authRouter");
 const joinRouter = require("./routes/joinRouter");
 const dashboardRouter = require("./routes/dashboardRouter");
 const messageRouter = require("./routes/messageRouter");
+const adminRouter = require("./routes/adminRouter");
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use("/", authRouter);
 app.use("/", joinRouter);
 app.use("/", dashboardRouter);
 app.use("/", messageRouter);
+app.use("/", adminRouter);
 
 // 404 fallback
 app.use((req, res) => {

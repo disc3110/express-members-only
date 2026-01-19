@@ -41,10 +41,24 @@ async function setMembershipStatus(userId, status) {
   return rows[0] || null;
 }
 
+async function setAdminStatus(userId, isAdmin) {
+  const { rows } = await db.query(
+    `
+    UPDATE users
+    SET is_admin = $2
+    WHERE id = $1
+    RETURNING id, username, is_admin
+    `,
+    [userId, isAdmin]
+  );
+  return rows[0] || null;
+}
+
 module.exports = {
   findById,
   findByUsername,
   findByEmail,
   createUser,
   setMembershipStatus,
+  setAdminStatus,
 };
