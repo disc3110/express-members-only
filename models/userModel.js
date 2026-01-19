@@ -28,9 +28,23 @@ async function createUser({ username, firstName, lastName, email, passwordHash }
   return rows[0];
 }
 
+async function setMembershipStatus(userId, status) {
+  const { rows } = await db.query(
+    `
+    UPDATE users
+    SET membership_status = $2
+    WHERE id = $1
+    RETURNING id, username, membership_status
+    `,
+    [userId, status]
+  );
+  return rows[0] || null;
+}
+
 module.exports = {
   findById,
   findByUsername,
   findByEmail,
   createUser,
+  setMembershipStatus,
 };

@@ -8,6 +8,7 @@ require("dotenv").config();
 
 const indexRouter = require("./routes/indexRouter");
 const authRouter = require("./routes/authRouter");
+const joinRouter = require("./routes/joinRouter");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/", indexRouter);
 app.use("/", authRouter); 
+app.use("/", joinRouter);
 
 // 404 fallback
 app.use((req, res) => {
