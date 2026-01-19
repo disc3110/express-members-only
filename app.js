@@ -45,6 +45,9 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.successMessages = req.flash("success");
   res.locals.errorMessages = req.flash("error");
+  res.locals.isLoggedIn = !!req.user;
+  res.locals.isMember = !!req.user?.membership_status;
+  res.locals.isAdmin = !!req.user?.is_admin;
   next();
 });
 
