@@ -45,7 +45,15 @@ const signupValidators = [
     }),
 ];
 
+// Signup routes
 router.get("/signup", authController.getSignup);
 router.post("/signup", signupValidators, authController.postSignup);
+
+// Login routes
+router.get("/login", authController.getLogin);
+router.post("/login", authController.postLogin);
+
+// Logout
+router.get("/logout", authController.logout);
 
 module.exports = router;

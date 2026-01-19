@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 min-h-screen flex flex-col">
+    <%- include("./partials/navbar") %>
+    <%- include("./partials/alerts") %>
+
+    <main class="flex-1 container mx-auto px-4 py-8">
+      <section class="max-w-2xl mx-auto">
+        <h1 class="text-2xl font-bold mb-4">
+          Welcome <%= currentUser ? currentUser.first_name : "member" %>!
+        </h1>
+        <p class="text-slate-700">
+          This will become your Members-only dashboard with the post list and “Create new post”
+          button.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

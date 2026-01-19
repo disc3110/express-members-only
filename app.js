@@ -3,12 +3,14 @@ const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
-const passport = require("passport"); // config later
+const passport = require("passport"); 
+const configurePassport = require("./config/passport");
 require("dotenv").config();
 
 const indexRouter = require("./routes/indexRouter");
 const authRouter = require("./routes/authRouter");
 const joinRouter = require("./routes/joinRouter");
+const dashboardRouter = require("./routes/dashboardRouter");
 
 const app = express();
 
@@ -33,6 +35,7 @@ app.use(
 app.use(flash());
 
 // passport setup 
+configurePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -48,6 +51,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/", authRouter); 
 app.use("/", joinRouter);
+app.use("/", dashboardRouter);
 
 // 404 fallback
 app.use((req, res) => {
