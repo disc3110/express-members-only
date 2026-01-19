@@ -1,7 +1,9 @@
 <nav class="w-full flex justify-between items-center py-4 px-6 bg-slate-900 text-white">
   <a href="/" class="font-semibold text-lg">Members Only</a>
-  <div class="space-x-4">
+  <div class="space-x-4 flex items-center">
     <% if (currentUser) { %>
+      <a href="/dashboard" class="text-sm underline">Dashboard</a>
+      <a href="/messages/new" class="text-sm underline">Create new post</a>
       <span class="text-sm">Hi, <%= currentUser.username %></span>
       <a href="/logout" class="underline text-sm">Logout</a>
     <% } else { %>

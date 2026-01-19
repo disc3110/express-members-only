@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create new message</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 min-h-screen flex flex-col">
+    <% include("../partials/navbar") %>
+    <% include("../partials/alerts") %>
+
+    <main class="flex-1 container mx-auto px-4 py-8">
+      <section class="max-w-xl mx-auto">
+        <h1 class="text-2xl font-bold mb-4 text-center">Create new post</h1>
+
+        <form action="/messages" method="POST" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1" for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value="<%= formData.title || '' %>"
+              class="w-full border rounded px-3 py-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1" for="body">Message</label>
+            <textarea
+              id="body"
+              name="body"
+              rows="5"
+              class="w-full border rounded px-3 py-2"
+              required
+            ><%= formData.body || '' %></textarea>
+          </div>
+
+          <% if (errors && errors.length) { %>
+            <div class="bg-red-100 text-red-800 text-sm px-3 py-2 rounded">
+              <ul class="list-disc list-inside">
+                <% errors.forEach(err => { %>
+                  <li><%= err.msg %></li>
+                <% }) %>
+              </ul>
+            </div>
+          <% } %>
+
+          <button
+            type="submit"
+            class="w-full bg-black text-white rounded-full py-2 font-semibold mt-2"
+          >
+            Create post
+          </button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
